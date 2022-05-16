@@ -1,0 +1,140 @@
+@import 'tools';
+@import 'flexbox';
+@import 'animation';
+
+$h1: 2.2s;
+$h1-delay: 0.5s;
+$h2: 2.6s;
+$h2-delay: 0.5s;
+$scaleDown: 3s;
+$scaleDown-delay: 0.5s;
+$text: 2.8s;
+$text-delay: 0.5s;
+
+.open-animation {
+  @include fixed-lt(0, 0);
+  height: 100vh;
+  background-color: #333;
+  animation: hidden 1s 1s forwards;
+  z-index: 90;
+  .block-top {
+    height: 50%;
+    li {
+      @include absolute-lt(0, 0);
+      width: 100%;
+      height: 0;
+      &:nth-child(1) {
+        background-color: #ccc;
+        animation: heightUp $h1 $h1-delay forwards ease-in-out;
+      }
+      &:nth-child(2) {
+        background-color: #e74510;
+        animation: heightUp $h2 $h2-delay forwards ease-in-out;
+      }
+    }
+  }
+  .block-down {
+    height: 50%;
+    li {
+      @include absolute-lb(0, 0);
+      width: 100%;
+      height: 0;
+      &:nth-child(1) {
+        background-color: #ccc;
+        animation: heightUp $h1 $h1-delay forwards ease-in-out;
+      }
+      &:nth-child(2) {
+        background-color: #e74510;
+        animation: heightUp $h2 $h2-delay forwards ease-in-out;
+      }
+    }
+  }
+  .block-title {
+    @extend %absolute-center;
+    width: 15em;
+    height: 15em;
+    animation: scaleDown $scaleDown $scaleDown-delay forwards;
+    li {
+      height: 50%;
+      overflow: hidden;
+      img {
+        width: 100%;
+        object-fit: cover;
+      }
+      &:nth-child(1) {
+        img {
+          @include absolute-lt(0, 100%);
+          animation: Up $text $text-delay forwards;
+        }
+      }
+      &:nth-child(2) {
+        img {
+          @include absolute-lb(0, 100%);
+          animation: Down $text $text-delay forwards;
+        }
+      }
+    }
+  }
+}
+
+@keyframes heightUp {
+  0% {
+    height: 0%;
+  }
+  30% {
+    height: 100%;
+  }
+  65% {
+    background-color: #ccc;
+  }
+  70% {
+    height: 100%;
+    background-color: #ccc;
+  }
+  100% {
+    height: 0%;
+    background-color: #ccc;
+  }
+}
+
+@keyframes Up {
+  0% {
+    top: 205%;
+  }
+  20% {
+    top: 0%;
+  }
+  70% {
+    top: 0%;
+  }
+  100% {
+    top: 205%;
+  }
+}
+
+@keyframes Down {
+  0% {
+    bottom: 205%;
+  }
+  20% {
+    bottom: 0%;
+  }
+  70% {
+    bottom: 0%;
+  }
+  100% {
+    bottom: 205%;
+  }
+}
+
+@keyframes scaleDown {
+  to {
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+}
+
+@keyframes hidden {
+  to {
+    background-color: transparent;
+  }
+}
