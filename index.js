@@ -1,3 +1,4 @@
+// 載入動畫消失
 const open = document.querySelector('.open-animation');
 setTimeout(() => {
   open.style.display = 'none';
@@ -34,7 +35,7 @@ function positionChange() {
 }
 positionChange();
 
-//header 色塊進場動畫 小4秒
+//header 色塊進場動畫 小2秒
 
 const bgc = document.querySelectorAll('.moveBox');
 let bgcScale = ['scale(0)', 'scale(2.7)'];
@@ -104,6 +105,8 @@ function textUp() {
 
 textUp();
 
+//navbar menu 彈出視窗
+
 const navbar = document.querySelector('.navbar');
 const navbarNone = document.querySelector('.navbar__button');
 const navbarBlock = document.querySelector('.menuBtn');
@@ -122,6 +125,8 @@ navbarNone.addEventListener('click', () => {
   menu.style.right = '0%';
 });
 
+// 跑馬燈
+
 const scroll = document.querySelectorAll('.scroll--p');
 
 let scrollPosition = ['190%', '120%', '50%', '-20%', '-90%'];
@@ -139,6 +144,8 @@ function scrollChange() {
 }
 
 scrollChange();
+
+// 換圖輪播底下燈條
 
 const light = document.querySelectorAll('.light');
 console.log(light);
