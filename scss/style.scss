@@ -4,6 +4,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+$font-Noto: 'Noto Sans', sans-serif;
+$font-Cormorant: 'Cormorant Garamond', serif;
+$theme-orange: #e43825;
 $header-img: 29em;
 $header-rotate: 12deg;
 $circle: 0.3s;
@@ -11,28 +14,25 @@ $circle: 0.3s;
 .header {
   height: 100vh;
   overflow: hidden;
-  font-family: 'Cormorant Garamond', serif;
+  font-family: $font-Cormorant;
   &__bgc {
     height: 100vh;
     transform: rotate(-$header-rotate) scale(2);
     filter: blur(1px);
     li {
-      width: 100%;
-      height: 50%;
+      @include size(100%, 50%);
     }
     &--top {
       overflow: hidden;
       .changeBox {
-        width: 100%;
-        height: 80rem;
-        border-radius: 40em;
+        @include size-bgc(100%, 80rem, 40em, none);
         &:nth-child(1) {
           @include absolute-lt(0%, 50%);
           transform: translateY(-50%);
         }
         &:nth-child(2) {
-          transition: all 1.5s;
           @include absolute-rt(-50%, 0%);
+          transition: all 1.5s;
         }
       }
     }
@@ -40,17 +40,14 @@ $circle: 0.3s;
       overflow: hidden;
       .changeBox {
         &:nth-child(1) {
-          width: 100%;
-          height: 80rem;
+          @include size(100%, 80rem);
           @include absolute-lt(0%, 50%);
           transform: translateY(-50%);
         }
         &:nth-child(2) {
-          width: 80rem;
-          height: 80rem;
-          border-radius: 50%;
-          transition: all 1.5s;
+          @include size-bgc(80rem, 80rem, 50%, none);
           @include absolute-rb(-50%, 0%);
+          transition: all 1.5s;
         }
       }
     }
@@ -106,9 +103,9 @@ $circle: 0.3s;
     @extend %flex-row-center;
     @include absolute-lt(50%, 0);
     @include font(3em, 1.5, 100, 0, 0.3em 0 0 0);
+    font-family: $font-Noto;
     width: 65%;
     flex-wrap: nowrap;
-    font-family: 'Noto Sans', sans-serif;
     transform: translateX(-50%);
     color: #fff;
     z-index: 20;
@@ -129,9 +126,8 @@ $circle: 0.3s;
   &__products {
     @extend %flex-row-center;
     @include absolute-lb(50%, 0);
+    @include size(50%, 28vh);
     transform: translateX(-50%);
-    width: 50%;
-    height: 28vh;
     z-index: 20;
     overflow: hidden;
     margin-bottom: 1em;
@@ -162,7 +158,7 @@ $circle: 0.3s;
     @include fixed-rt(0%, 50%);
     transform-origin: top right;
     transform: rotate(90deg) translate(50%, 0);
-    background-color: #e43825;
+    background-color: $theme-orange;
     opacity: 0;
     animation: menu 3s 2s forwards;
     transition: all 1s;
@@ -177,7 +173,7 @@ $circle: 0.3s;
       }
       li {
         @include font(0.5em, 1.1, 400, 3px, 0);
-        font-family: 'Noto Sans', sans-serif;
+        font-family: $font-Noto;
         text-align: center;
         color: #fff;
         padding: 1em;
@@ -195,14 +191,12 @@ $circle: 0.3s;
   }
   &__scroll {
     @include absolute-lt(0, 50%);
+    @include size-bgc(20%, 2em, 2em, none);
     transform-origin: left top;
     transform: rotate(-90deg) translate(-50%, 100%);
     flex-wrap: nowrap;
     white-space: nowrap;
-    height: 2em;
-    width: 20%;
     border: 1px solid #fff;
-    border-radius: 2em;
     overflow: hidden;
     p {
       @extend %absolute-center;
@@ -217,71 +211,58 @@ $circle: 0.3s;
     &--box {
       @extend %flex-row-center;
       li {
-        width: 4em;
-        height: 4px;
-        background-color: rgb(214, 214, 214, 0.5);
-        border-radius: 4px;
+        @include size-bgc(4em, 4px, 4px, rgb(214, 214, 214, 0.5));
         margin: 3px;
         overflow: hidden;
         div {
+          @include size-bgc(100%, 100%, 4px, $theme-orange);
           @include absolute-lt(-50%, 50%);
           transform: translate(-50%, -50%);
-          width: 100%;
-          height: 100%;
-          background-color: #e43825;
-          border-radius: 4px;
         }
       }
     }
   }
   .navbar--bgc {
+    @include size-bgc(100%, 100%, 0, #000);
     @extend %absolute-center;
-    width: 100%;
-    height: 100%;
-    background-color: rgb(0, 0, 0);
     opacity: 0.8;
     z-index: 25;
   }
   .navbar {
+    @include size-bgc(80%, 70%, 0, $theme-orange);
     @extend %absolute-center;
     @extend %flex-row-around;
     align-items: flex-start;
-    z-index: 99;
     margin: 0 auto;
-    padding: 3em 0;
-    width: 80%;
-    height: 70%;
     padding: 3em;
-    background-color: #e43825;
     transform-origin: top left;
     animation: navbar 1s forwards;
     z-index: 30;
     ul {
       li {
-        color: #fff;
         @include font(1em, 1.5, 700, 0.2em, 0);
+        color: #fff;
         a {
-          display: block;
-          color: #fff;
           @include font(0.7em, 1.5, 400, 0.2em, 2em 0 0 0);
           @include hover-scale(1.2, 0.4s);
+          display: block;
+          color: #fff;
         }
       }
     }
     &__button {
+      @include size(10em, 5em);
       @extend %flex-row-between;
       @include absolute-rb(0, 0);
       margin-bottom: 1em;
       margin-right: 1em;
-      width: 10em;
-      height: 5em;
       overflow: hidden;
       p {
         @include font(0.9em, 1.5, 200, 0.1em, 0);
         flex: 1;
         color: #fff;
         text-align: center;
-        font-family: 'Noto Sans', sans-serif;
+        font-family: $font-Noto;
         cursor: pointer;
       }
       .button--x {
@@ -292,10 +273,8 @@ $circle: 0.3s;
         border-radius: 5em;
         cursor: pointer;
         span {
+          @include size(40%, 1px, 0, #fff);
           position: absolute;
-          width: 40%;
-          height: 1px;
-          background-color: #fff;
           &:nth-child(1) {
             transform: rotate(45deg);
           }
@@ -305,27 +284,21 @@ $circle: 0.3s;
         }
       }
       .button--effect {
+        @include size(100%, 50%, 5em, #fff);
         @extend %flex-row-center;
         @include absolute-rt(0, 0);
         transform: rotate(45deg);
-        height: 100%;
-        width: 50%;
         border: 1px solid #fff;
-        border-radius: 5em;
         span {
           &:nth-child(1) {
+            @include size(60%, 105%, 0, $theme-orange);
             @include absolute-lb(50%, 50%);
             transform: translate(-50%, 0);
-            height: 60%;
-            width: 105%;
-            background-color: #e43825;
           }
           &:nth-child(2) {
+            @include size(60%, 105%, 0, $theme-orange);
             @include absolute-lt(50%, 50%);
             transform: translate(-50%, 0);
-            height: 60%;
-            width: 105%;
-            background-color: #e43825;
             transform-origin: top center;
           }
         }
@@ -341,12 +314,4 @@ $circle: 0.3s;
       }
     }
   }
-}
-
-.displayNone {
-  display: none;
-}
-
-.lightRight {
-  animation: light 4s backwards ease-out;
 }

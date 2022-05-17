@@ -142,6 +142,15 @@
     left: 50%;
   }
 }
+.displayNone {
+  display: none;
+}
+
+.lightRight {
+  -webkit-animation: light 4s backwards ease-out;
+          animation: light 4s backwards ease-out;
+}
+
 .open-animation {
   position: fixed;
   left: 0;

@@ -125,20 +125,6 @@
 
 //盒子長寬設定
 
-@mixin a($w, $h) {
-  width: $w;
-  height: $h;
-}
-@mixin a-bgc($w, $h, $radius, $color) {
-  width: $w;
-  height: $h;
-  border-radius: $radius;
-  background-color: $color;
-}
-@mixin span($w, $h) {
-  width: $w;
-  height: $h;
-}
 @mixin size($w, $h) {
   width: $w;
   height: $h;
